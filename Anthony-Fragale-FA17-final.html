@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <title>Anthony Fragale FA17 Final</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" />
+    <style type="text/css" media="screen">
+        /* Reset Styles */
+
+ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd,
+ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details,
+embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; } article, aside, details, figcaption,
+figure, footer, header, hgroup, menu, nav, section { display: block; } body { line-height: 1; } ol, ul { list-style: none;
+}
+
+        * {
+            box-sizing: border-box;
+            background-color: #D3D3D3;
+            font-family: Helvetica;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10vh;
+            left: 10vh;
+            height: 30vh;
+            width: 30vh;
+            background-repeat: no-repeat; /*stops the background on being to big, and repeateing.*/
+            background-size: cover;/*fills entire size of the container*/
+        }
+
+        .container {
+            background-color: black;
+            margin: 25vh auto;
+            height: 41vh;
+            width: 41vh;
+            overflow: auto;
+        }
+
+        .innerBox {
+            float: left;
+            height: calc(45vh/6);
+            width: calc(45vh/6);
+            margin: 3vh;
+            background-color: red;
+        }
+
+        .instruction {
+            font-size: 5vh;
+            position: absolute;
+            text-align: center;
+            bottom: 50vh;
+            animation: up forwards 1s;
+        }
+
+        @keyframes up {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 1300px) {
+
+            .logo {
+                position: absolute;
+                top: 1vh;
+                height: 20vh;
+                width: 20vh;
+                background-repeat: no-repeat; /*stops the background on being to big, and repeateing.*/
+                background-size: cover;/*fills entire size of the container*/
+            }
+
+            .instruction {
+                font-size: 5vh;
+                position: absolute;
+                text-align: center;
+                bottom: 20vh;
+                animation: up forwards 1s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+    <div class="instruction"> Please click one of the boxes.</div>
+    <!-- PUT HTML HERE -->
+    <script type="text/javascript">
+        // put javascript here
+        for (i = 1; i < 10; i++) // create 10 divs within the container. 
+        {
+            var create_divs = document.createElement("div");
+            create_divs.className = "innerBox"; // give these divs the class of "innerBox"
+            create_divs.addEventListener("click", function () {
+                this.style.backgroundColor = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(
+                    1, 6) // random color selector for a hexaDecimal. 
+
+            });
+            document.querySelector(".container").appendChild(create_divs); // append the divs as a child of the container. 
+        }
+
+        var chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        /*this second check is where edge was messing up. So, I checked for another user agent string. My source for learning what these were is from here: https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID/userAgent
+         */
+        var firefox = /Firefox/.test(navigator.userAgent); //this one check for firefox was all that was needed 
+        var edge = (/Edge\/\d./i.test(navigator.userAgent)); // I'm not sure why edge was so difficult, but I found it here: https://msdn.microsoft.com/en-us/library/hh869301%28v=vs.85%29.aspx
+        var explorer_eleven = (/rv:11.0/i.test(navigator.userAgent));
+        var opera = /Opera/.test(navigator.userAgent);
+        var safari = /Safari/.test(navigator.userAgent);
+        //the below if statements check for each individual browser, and supplement an image on true. 
+        if (safari) //only works on mac. microsoft's safari won't run it right. 
+        {
+            var create = document.createElement("div");
+            create.className = "logo";
+            create.style.backgroundImage =
+                "url('http://vignette4.wikia.nocookie.net/logopedia/images/6/68/54538251_c82f8f92e6.png/revision/latest?cb=20150723211304')";
+            document.body.appendChild(create);
+        }
+
+        if (chrome) {
+            var create = document.createElement("div");
+            create.className = "logo";
+            create.style.backgroundImage =
+                "url('https://lh3.googleusercontent.com/nYhPnY2I-e9rpqnid9u9aAODz4C04OycEGxqHG5vxFnA35OGmLMrrUmhM9eaHKJ7liB-=w300')";
+            document.body.appendChild(create);
+        }
+        if (firefox) {
+            var create = document.createElement("div");
+            create.className = "logo";
+            create.style.backgroundImage = "url('https://hacks.mozilla.org/files/2017/06/firefox-logo.png')";
+            document.body.appendChild(create);
+        }
+
+        if (edge) {
+            var create = document.createElement("div");
+            create.className = "logo";
+            create.style.backgroundImage =
+                "url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Microsoft_Edge_logo.svg/2000px-Microsoft_Edge_logo.svg.png')";
+            document.body.appendChild(create);
+        }
+
+        if (explorer_eleven) {
+            var create = document.createElement("div");
+            create.className = "logo";
+            create.style.backgroundImage =
+                "url('http://www.livehacking.com/web/wp-content/uploads/2012/11/ie10-logo-300x300.png')";
+            document.body.appendChild(create);
+        }
+        if (opera) {
+            var create = document.createElement("div");
+            create.className = "logo";
+            create.style.backgroundImage =
+                "url('https://logoeps.com/wp-content/uploads/2013/04/opera-browser-vector-logo.png')";
+            document.body.appendChild(create);
+        }
+    </script>
+</body>
+
+</html>
